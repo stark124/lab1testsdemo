@@ -1,0 +1,37 @@
+apiVersion: apps/v1
+kind: Deployment
+
+metadata:
+  name: jenkins-nginx
+
+spec:
+  replicas: 2
+
+  selector:
+    matchLabels:
+      app: jenkins-nginx
+
+  template:
+    metadata:
+      labels:
+        app: jenkins-nginx
+
+    spec:
+      containers:
+        - name: nginx
+
+          image: IMAGE_URI
+
+          imagePullPolicy: Always
+
+          ports:
+            - containerPort: 80
+
+          resources:
+            requests:
+              cpu: 100m
+              memory: 128Mi
+
+            limits:
+              cpu: 250m
+              memory: 256Mi
